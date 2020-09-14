@@ -109,7 +109,7 @@ that it has rejoined the cluster and is in sync with the leader by running `cons
 and checking whether the `commit_index` and `last_log_index` fields have the same value.
 If done properly, this should avoid an unexpected leadership election due to loss of quorum.
 
-Please note that it's important to run `consul leave` on each server node when shutting
+~> It's important to run `consul leave` on each server node when shutting
 Consul down. Make sure your service management system (e.g., systemd, upstart, etc.) is
 performing that action. If not, make sure you do it manually or you _will_ end up in a
 bad cluster state.

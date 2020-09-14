@@ -76,7 +76,7 @@ You should see output that looks like this:
 }
 ```
 
-The primary datacenter (indicated by `acl_datacenter`) will always show as having replication
+-> The primary datacenter (indicated by `acl_datacenter`) will always show as having replication
 disabled, so this is normal even if replication is happening.
 
 **2.** Check replication status in DC2 by running the following curl command from a
@@ -106,10 +106,11 @@ You should see output that looks like this:
 2020/09/08 15:51:32 [ERR] consul: RPC failed to server 192.168.5.2:8300 in DC "dc1": rpc error making call: rpc: can't find service ConfigEntry.ListAll
 ```
 
-NOTE: _It's important to upgrade your primary datacenter (the one specified in `acl_datacenter`)
-**last**_. If you upgrade the primary datacenter first, it will break replication between your
-other datacenters. If you upgrade your other datacenters first, they will run in legacy mode and
-replication from your primary datacenter will continue working.
+!> **Warning:** _It's important to upgrade your primary datacenter **last**_ (the one
+specified in `acl_datacenter`). If you upgrade the primary datacenter first, it will
+break replication between your other datacenters. If you upgrade your other datacenters
+first, they will run in legacy mode and replication from your primary datacenter will
+continue working.
 
 **4.** Check to see if replication is still working in DC2.
 
@@ -186,7 +187,8 @@ You should see output that looks like this:
 ```
 
 **6.** Migrate your legacy ACL tokens to the new ACL system by following the instructions in our [ACL Token Migration guide](https://www.consul.io/docs/acl/acl-migrate-tokens).
-This step _must_ be completed before upgrading to a version higher than 1.6.x.
+
+~> This step _must_ be completed before upgrading to a version higher than 1.6.x.
 
 ## Post-Upgrade Configuration Changes
 
